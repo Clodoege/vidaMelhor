@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" 
     content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href = "css/bootstrap.min.css">
+
     <title>Vida Melhor</title>
 </head>
 <body>
+     <div class="container">
     <header>
-        <h1>Aqui será meu cabeçalho</h1>
+        <div class="navbar navbar-dark bg-dark">
+            <div class= "container d-flex justfy-content-between">
+            <a href="#" class="navbar-brand">
+                <strong>Vida Melhor</strong>
+               <img src="img/logo-vida-melhor.png" class="img-fluid" style= "width:20%">
+            </a>
+            <nav>
+                <a href= "#" class="text-white">Login</a>
+            </nav>
+            </div>
+        </div>
+        
     </header>
