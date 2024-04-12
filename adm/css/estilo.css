@@ -1,0 +1,38 @@
+footer {
+    background-color: #ccc;
+    height: 100px;
+}
+
+.social {
+    position: relative;
+    float: right;
+    list-style-type: none;
+    padding: 10px;
+
+}
+
+.social li {
+    float: left;
+    margin-left: 25px;
+}
+
+.social a {
+    height: 32px;
+    width: 32px;
+    display: block;
+    text-indent: -9999px;
+}
+
+.social a[href*="facebook.com"] {
+    background-image: url(../img/facebook.png);
+}
+
+.social a[href*="gitrub.com"] {
+    background-image: url(https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/socials/github.svg );
+}
+.social a[href*="instagram.com"] {
+    background-image: url(../img/instagram.png);
+}
+h5{
+    text-align: center;
+}
