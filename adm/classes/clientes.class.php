@@ -1,19 +1,15 @@
 <?php
 require 'conexao.class.php';  //para poder usar a classe conexao pelo banco de dados
-class Contatos
+class Clientes
 {
 
     private $id;
     private $nome;
     private $email;
     private $telefone;
-    private $cidade;
-    private $rua;
-    private $numero;
-    private $bairro;
-    private $cep;
-    private $profissao;
+    private $cpf;
     private $foto;
+    private $senha;
 
     private $con;
 
@@ -37,7 +33,7 @@ class Contatos
         }
         return $array;
     }
-    public function adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto)
+    public function adicionar($email, $nome, $telefone, $cpf, $foto, $senha)
     {
         $emailExistente = $this->existeEmail($email);
         if (count($emailExistente) == 0) {
@@ -45,25 +41,17 @@ class Contatos
                 $this->nome = $nome;
                 $this->email = $email;
                 $this->telefone = $telefone;
-                $this->cidade = $cidade;
-                $this->rua = $rua;
-                $this->numero = $numero;
-                $this->bairro = $bairro;
-                $this->cep = $cep;
-                $this->profissao = $profissao;
+                $this->cpf = $cpf;
                 $this->foto = $foto;
-                $sql = $this->con->conectar()->prepare("INSERT INTO contatos(nome, email, telefone, cidade, rua, numero, bairro, cep, profissao, foto)
-                    VALUES(:nome, :email, :telefone, :cidade, :rua, :numero, :bairro, :cep, :profissao, :foto)");
+                $this->senha = $senha;
+                $sql = $this->con->conectar()->prepare("INSERT INTO clientes(nome, email, telefone, cpf, foto, senha)
+                    VALUES(:nome, :email, :telefone, :cpf, :foto, :senha)");
                 $sql->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                 $sql->bindParam(":email", $this->email, PDO::PARAM_STR);
                 $sql->bindParam(":telefone", $this->telefone, PDO::PARAM_STR);
-                $sql->bindParam(":cidade", $this->cidade, PDO::PARAM_STR);
-                $sql->bindParam(":rua", $this->rua, PDO::PARAM_STR);
-                $sql->bindParam(":numero", $this->numero, PDO::PARAM_STR);
-                $sql->bindParam(":bairro", $this->bairro, PDO::PARAM_STR);
-                $sql->bindParam(":cep", $this->cep, PDO::PARAM_STR);
-                $sql->bindParam(":profissao", $this->profissao, PDO::PARAM_STR);
+                $sql->bindParam(":cpf", $this->cpf, PDO::PARAM_STR);
                 $sql->bindParam(":foto", $this->foto, PDO::PARAM_STR);
+                $sql->bindParam(":senha", $this->senha, PDO::PARAM_STR);
 
                 $sql->execute();
                 return TRUE;
@@ -77,9 +65,9 @@ class Contatos
     public function listar()
     {
         try {
-            $sql = $this->con->conectar()->prepare("SELECT id, nome, email, telefone, cidade, rua, numero, bairro, cep, profissao, foto FROM contatos");
+            $sql = $this->con->conectar()->prepare("SELECT id, nome, email, telefone, cpf, foto, senha FROM clientes");
             $sql->execute();
-            return $sql->fetchAll(); //fetchAll traz todos os registros
+            return $sql->fetchAll(); //fetchAll retorna todos os registros do banco
         } catch (PDOException $ex) {
             return 'ERRO: ' . $ex->getMessage();
         }
@@ -87,11 +75,11 @@ class Contatos
     public function buscar($id)
     {
         try {
-            $sql = $this->con->conectar()->prepare("SELECT * FROM contatos WHERE id = :id");
+            $sql = $this->con->conectar()->prepare("SELECT * FROM clientes WHERE id = :id");
             $sql->bindValue(':id', $id);
             $sql->execute();
             if ($sql->rowCount() > 0) {
-                return $sql->fetch();
+                return $sql->fetch();  //fetch retorna apenas o
             } else {
                 return array();
             }
@@ -99,25 +87,21 @@ class Contatos
             echo "ERRO: " . $ex->getMessage();
         }
     }
-    public function editar($nome, $email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto, $id)
+    public function editar($nome, $email, $telefone, $cpf, $foto, $senha, $id)
     {
         $emailExistente = $this->existeEmail($email);
         if (count($emailExistente) > 0 && $emailExistente['id'] != $id) {
             return FALSE;
         } else {
             try {
-                $sql = $this->con->conectar()->prepare("UPDATE contatos SET nome = :nome, email = :email, telefone = :telefone, cidade = :cidade, rua = :rua,
-                 numero = :numero, bairro = :bairro, cep = :cep, profissao = :profissao, foto = :foto WHERE id = :id");
+                $sql = $this->con->conectar()->prepare("UPDATE clientes SET nome = :nome, email = :email, telefone = :telefone, cpf = :cpf, 
+                foto = :foto, senha = :senha WHERE id = :id");
                 $sql->bindValue(':nome', $nome);
                 $sql->bindValue(':email', $email);
                 $sql->bindValue(':telefone', $telefone);
-                $sql->bindValue(':cidade', $cidade);
-                $sql->bindValue(':rua', $rua);
-                $sql->bindValue(':numero', $numero);
-                $sql->bindValue(':bairro', $bairro);
-                $sql->bindValue(':cep', $cep);
-                $sql->bindValue(':profissao', $profissao);
+                $sql->bindValue(':cpf', $cpf);
                 $sql->bindValue(':foto', $foto);
+                $sql->bindValue(':senha', $senha);
                 $sql->bindValue(':id', $id);
                 $sql->execute();
 
@@ -129,7 +113,7 @@ class Contatos
     }
     public function excluir($id)
     {
-        $sql = $this->con->conectar()->prepare("DELETE FROM contatos where id= :id");
+        $sql = $this->con->conectar()->prepare("DELETE FROM clientes where id= :id");
         $sql->bindValue(':id', $id);
         $sql->execute();
     }
