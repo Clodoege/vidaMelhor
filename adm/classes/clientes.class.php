@@ -21,7 +21,7 @@ class Clientes
     //vamos fazer uma validação pelo email, que é um atributo único, assim evitamos que haja duplicidade no cadastro de usuário
     private function existeEmail($email)
     {
-        $sql = $this->con->conectar()->prepare("SELECT id FROM contatos WHERE email = :email");
+        $sql = $this->con->conectar()->prepare("SELECT id FROM cliente WHERE email = :email");
         $sql->bindParam(':email', $email, PDO::PARAM_STR);
         $sql->execute();
 
@@ -44,7 +44,7 @@ class Clientes
                 $this->cpf = $cpf;
                 $this->foto = $foto;
                 $this->senha = $senha;
-                $sql = $this->con->conectar()->prepare("INSERT INTO clientes(nome, email, telefone, cpf, foto, senha)
+                $sql = $this->con->conectar()->prepare("INSERT INTO cliente(nome, email, telefone, cpf, foto, senha)
                     VALUES(:nome, :email, :telefone, :cpf, :foto, :senha)");
                 $sql->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                 $sql->bindParam(":email", $this->email, PDO::PARAM_STR);
@@ -65,7 +65,7 @@ class Clientes
     public function listar()
     {
         try {
-            $sql = $this->con->conectar()->prepare("SELECT id, nome, email, telefone, cpf, foto, senha FROM clientes");
+            $sql = $this->con->conectar()->prepare("SELECT id, nome, email, telefone, cpf, foto, senha FROM cliente");
             $sql->execute();
             return $sql->fetchAll(); //fetchAll retorna todos os registros do banco
         } catch (PDOException $ex) {
@@ -75,7 +75,7 @@ class Clientes
     public function buscar($id)
     {
         try {
-            $sql = $this->con->conectar()->prepare("SELECT * FROM clientes WHERE id = :id");
+            $sql = $this->con->conectar()->prepare("SELECT * FROM cliente WHERE id = :id");
             $sql->bindValue(':id', $id);
             $sql->execute();
             if ($sql->rowCount() > 0) {
@@ -94,7 +94,7 @@ class Clientes
             return FALSE;
         } else {
             try {
-                $sql = $this->con->conectar()->prepare("UPDATE clientes SET nome = :nome, email = :email, telefone = :telefone, cpf = :cpf, 
+                $sql = $this->con->conectar()->prepare("UPDATE cliente SET nome = :nome, email = :email, telefone = :telefone, cpf = :cpf, 
                 foto = :foto, senha = :senha WHERE id = :id");
                 $sql->bindValue(':nome', $nome);
                 $sql->bindValue(':email', $email);
@@ -113,7 +113,7 @@ class Clientes
     }
     public function excluir($id)
     {
-        $sql = $this->con->conectar()->prepare("DELETE FROM clientes where id= :id");
+        $sql = $this->con->conectar()->prepare("DELETE FROM cliente where id= :id");
         $sql->bindValue(':id', $id);
         $sql->execute();
     }

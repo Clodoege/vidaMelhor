@@ -1,5 +1,5 @@
 <?php
-include 'classes/contatos.class.php';
+include 'classes/clientes.class.php';
 $cliente = new Clientes();
 ?>
 <h1>Gestao de usuario Vida Melhor</h1>
@@ -19,8 +19,8 @@ $cliente = new Clientes();
         <th>AÇÕES</th>
     </tr>
     <?php
-    $lista = $clientes->listar();
-    foreach ($lista as $item) :
+    $lista = $cliente->listar();
+    foreach($lista as $item) :
     ?>
         <tbody>
             <tr>
