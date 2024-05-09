@@ -16,7 +16,7 @@ class Exercicios
         $this->nome = $nome;
         $this->categoria = $categoria;
 
-        $sql = $this->con->conectar()->prepare("INSERT INTO exercicio(nome, categoria)values(:nome, :categoria)");
+        $sql = $this->con->conectar()->prepare("INSERT INTO exercicio(nome, categoria)values(:nome, :categoria)");   //parei aqui em 02/05/2024
 
 
     }
