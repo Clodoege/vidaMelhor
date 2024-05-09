@@ -1,5 +1,5 @@
 <?php
-include 'inc/header.inc.php';
+include 'inc/header-inc.php';
 ?>
 
 <h2>ADMINISTRATIVO</h2>
@@ -22,5 +22,5 @@ include 'inc/header.inc.php';
 </div>
 
 <?php
-include 'inc/footer.inc.php';
+include 'inc/footer-inc.php';
 ?>

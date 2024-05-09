@@ -33,6 +33,8 @@ class Clientes
         }
         return $array;
     }
+
+    
     public function adicionar($email, $nome, $telefone, $cpf, $foto, $senha)
     {
         $emailExistente = $this->existeEmail($email);

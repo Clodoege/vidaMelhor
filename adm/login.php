@@ -1,14 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require_once 'inc/header-inc.php';
+require 'classes/clientes.class.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>Vida Melhor</title>
-</head>
-<form method="POST" action="index.php">
+
+if(!empty($_POST['email'])){
+    $email = addslashes($_POST['email']);
+    $senha = md5($_POST['senha']);
+
+    $cliente = new Clientes();
+
+    if($cliente->fazerLogin($email, $senha)){
+        header("Location: /index.php");
+        exit;
+    }else{
+        echo'<span style="color: red">'. "Usuario e/ou senha incorretos".'</span>';
+    }
+}
+?>
+
+<h1>Login Cliente</h1>
+<form method="POST">
+
     <div class="form-group">
         <label for="email">Email</label>
         <input type="email" name="email" class="form-control">
@@ -21,7 +34,9 @@
 
 </form>
 
-
+<?php
+require_once 'inc/footer-inc.php'
+?>
 
 
 
