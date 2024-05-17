@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "vidaMelhor",
+			"path": ".."
+		},
+		{
+			"name": "agendaSenac",
+			"path": "../../agendaSenac"
+		}
+	],
+	"settings": {}
+}

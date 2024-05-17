@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'inc/header-inc.php';
 require 'classes/clientes.class.php';
 
@@ -10,8 +11,8 @@ if(!empty($_POST['email'])){
 
     $cliente = new Clientes();
 
-    if($cliente->fazerLogin($email, $senha)){
-        header("Location: /index.php");
+    if($usuario->fazerLogin($email, $senha)){
+        header("Location: index.php");
         exit;
     }else{
         echo'<span style="color: red">'. "Usuario e/ou senha incorretos".'</span>';
@@ -19,7 +20,7 @@ if(!empty($_POST['email'])){
 }
 ?>
 
-<h1>Login Cliente</h1>
+<h1>Login Usuario</h1>
 <form method="POST">
 
     <div class="form-group">

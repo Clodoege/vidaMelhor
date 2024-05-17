@@ -8,11 +8,13 @@ class Exercicios
 
     private $con;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->con = new Conexao();
     }
 
-    public function adicionar($nome, $categoria){
+    public function adicionar($nome, $categoria)
+    {
         $this->nome = $nome;
         $this->categoria = $categoria;
 
@@ -20,6 +22,4 @@ class Exercicios
 
 
     }
-
-
 }
