@@ -26,6 +26,74 @@ class Usuario
     //aqui ficará o CRUD de usuario
 
     //métodos do CRUD igual a Clientes
+    private function existeEmail($email)
+    {
+        $sql = $this->con->conectar()_>prepare("SELECT id FROM usuario WHERE email= :email");
+        $sql->bindParam(':email',$email, PDO::PARAM_STR);
+        $sql->execute();
+
+        if($sql->rowcount() > 0){
+            $array = $sql->fetch();
+        } else{
+            $array = $array();
+        }
+        return $array;
+    }
+    public function adicionar($email, $nome, $senha, $permissoes){
+        $emaiExistente = $this->existeEmail(email);
+        if(count($emailExistente) == 0){
+            try{
+                $this->nome = $nome;
+                $this->email = $email;
+                $this->senha = $senha;
+                $this->permissoes = $permissoes;
+                $sql = $this->con->conectar()->prepare("INSERT INTO usuario(nome, email,senha, permissoes)
+                    VALUES (:nome, :email, :senha, :permissoes");
+                $sql->bindParam(":nome", $this->nome, PDO::PARAM_STR);
+                $sql->bindParam(":email", $this->email, PDO::PARAM_STR);
+                $sql->bindParam(":senha", $this->senha, PDO::PARAM_STR);
+                $permissoes_>bindParam("permissoes", $this->permissoes, PDO::PARAM_STR);
+
+                $sql-> execute();
+                return TRUE;
+            
+            } catch (PDOException $ex){
+                  return 'ERRO: '. $ex->getMessage();
+            }
+        } else {
+             return FALSE;
+        }
+    }
+    public function listar
+    {
+        try{
+            $sql = $this->con->conectar()->prepare("SELECT id, nome, email, senha, permissoes FROM usuario");
+            $sql->execute();
+            return $sql->fetchAll();
+        }catch (PDOException $ex){
+            return 'ERRO: '. $ex->getMessage();
+        }
+    }
+    public function buscar($id)
+    {
+        try{
+            $sql = $this->con->conectar()->prepare("SELECT * FROM usuario WHERE id = :id");
+            $sql->bindValue(':id', $id);
+            $sql->execute();
+            if($sql->rouCount() > 0){
+                return $sql_>fetch();
+            } else{
+                return array();
+            }
+        } catch (PDOException $ex){
+            echo "ERRO: ". $ex->getMessage();
+        }
+    }
+    public function editar($nome, $email, $senha, $permissoes, $id)
+    {
+        
+
+    }
 
     //fim CRUD usuário.
 
