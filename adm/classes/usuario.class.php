@@ -28,19 +28,19 @@ class Usuario
     //métodos do CRUD igual a Clientes
     private function existeEmail($email)
     {
-        $sql = $this->con->conectar()_>prepare("SELECT id FROM usuario WHERE email= :email");
+        $sql = $this->con->conectar()->prepare("SELECT id FROM usuario WHERE email= :email");
         $sql->bindParam(':email',$email, PDO::PARAM_STR);
         $sql->execute();
 
         if($sql->rowcount() > 0){
             $array = $sql->fetch();
         } else{
-            $array = $array();
+            $array = array();
         }
         return $array;
     }
     public function adicionar($email, $nome, $senha, $permissoes){
-        $emaiExistente = $this->existeEmail(email);
+        $emailExistente = $this->existeEmail($email);
         if(count($emailExistente) == 0){
             try{
                 $this->nome = $nome;
@@ -52,7 +52,7 @@ class Usuario
                 $sql->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                 $sql->bindParam(":email", $this->email, PDO::PARAM_STR);
                 $sql->bindParam(":senha", $this->senha, PDO::PARAM_STR);
-                $permissoes_>bindParam("permissoes", $this->permissoes, PDO::PARAM_STR);
+                $permissoes->bindParam("permissoes", $this->permissoes, PDO::PARAM_STR);
 
                 $sql-> execute();
                 return TRUE;
@@ -64,7 +64,7 @@ class Usuario
              return FALSE;
         }
     }
-    public function listar
+    public function listar()
     {
         try{
             $sql = $this->con->conectar()->prepare("SELECT id, nome, email, senha, permissoes FROM usuario");
@@ -81,7 +81,7 @@ class Usuario
             $sql->bindValue(':id', $id);
             $sql->execute();
             if($sql->rouCount() > 0){
-                return $sql_>fetch();
+                return $sql->fetch();
             } else{
                 return array();
             }
