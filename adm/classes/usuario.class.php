@@ -89,10 +89,31 @@ class Usuario
             echo "ERRO: ". $ex->getMessage();
         }
     }
-    public function editar($nome, $email, $senha, $permissoes, $id)
+    public function editar($nome, $email, $permissoes, $id)
     {
-        
+        $emailExistente = $this->existeEmail(($email));
+        if(count($emailExistente) > 0 && $emailExistente['id'] != $id){
+            return FALSE;
+        }else {
+            try{
+                $sql = $this->con->conectar()->prepare("UPDATE usuario SET neme = :nome, email = :email, permissoes = :permissoes WHERE id = :id");
+                $sql->bindValue(':nome', $nome);
+                $sql->bindValue(':email', $email);
+                $sql->bindValue(':permissoes', $permissoes);
+                $sql->execute();
 
+                return TRUE;
+            }catch (PDOException $ex){
+                echo 'ERRO: '.$ex->getMessage();
+            }
+        }
+
+    }
+    public function excluir($id)
+    {
+        $sql = $this->con->conectar()->prepare("DELETE FROM usuario WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
     }
 
     //fim CRUD usuário.
