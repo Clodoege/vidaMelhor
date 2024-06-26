@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'inc/header-inc.php';
-require 'classes/clientes.class.php';
+require 'classes/usuario.class.php';
 
 
 
@@ -9,7 +9,7 @@ if(!empty($_POST['email'])){
     $email = addslashes($_POST['email']);
     $senha = md5($_POST['senha']);
 
-    $cliente = new Clientes();
+    $usuario = new Usuario();
 
     if($usuario->fazerLogin($email, $senha)){
         header("Location: index.php");

@@ -96,7 +96,7 @@ class Usuario
             return FALSE;
         }else {
             try{
-                $sql = $this->con->conectar()->prepare("UPDATE usuario SET neme = :nome, email = :email, permissoes = :permissoes WHERE id = :id");
+                $sql = $this->con->conectar()->prepare("UPDATE usuario SET nome = :nome, email = :email, permissoes = :permissoes WHERE id = :id");
                 $sql->bindValue(':nome', $nome);
                 $sql->bindValue(':email', $email);
                 $sql->bindValue(':permissoes', $permissoes);

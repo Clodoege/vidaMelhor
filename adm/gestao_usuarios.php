@@ -1,6 +1,6 @@
 <?php
 include 'classes/usuario.class.php';
-$cliente = new Usuario();
+$usuario = new Usuario();
 ?>
 <h1>Gestao de usuario Vida Melhor</h1>
 
@@ -13,8 +13,9 @@ $cliente = new Usuario();
         <th>ID</th>
         <th>NOME</th>
         <th>EMAIL</th>
-        <th>SENHA</th>
+      <!--  <th>SENHA</th>-->
         <th>PERMISSOES</th>
+        <th>AÇÕES</th>
         
     </tr>
     <?php
@@ -26,7 +27,7 @@ $cliente = new Usuario();
                 <td><?php echo $item['id']; ?></td>
                 <td><?php echo $item['nome']; ?></td>
                 <td><?php echo $item['email']; ?></td>
-                <td><?php echo $item['senha']; ?></td>
+               
                 <td><?php echo $item['permissoes']; ?></td>
                
                 <td>
