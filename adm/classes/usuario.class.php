@@ -48,11 +48,11 @@ class Usuario
                 $this->senha = $senha;
                 $this->permissoes = $permissoes;
                 $sql = $this->con->conectar()->prepare("INSERT INTO usuario(nome, email,senha, permissoes)
-                    VALUES (:nome, :email, :senha, :permissoes");
+                    VALUES (:nome, :email, :senha, :permissoes)");
                 $sql->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                 $sql->bindParam(":email", $this->email, PDO::PARAM_STR);
                 $sql->bindParam(":senha", $this->senha, PDO::PARAM_STR);
-                $permissoes->bindParam("permissoes", $this->permissoes, PDO::PARAM_STR);
+                $sql->bindParam("permissoes", $this->permissoes, PDO::PARAM_STR);
 
                 $sql-> execute();
                 return TRUE;
