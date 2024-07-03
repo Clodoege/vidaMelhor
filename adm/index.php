@@ -13,9 +13,9 @@ include 'inc/header-inc.php';
 
         <ul>
             <li><a href="gestao_exercicios.php">Gestão área exercícios</a></li>
-            <li><a href="gestao_foto_exercicio.php">Gestão fotos exercícios</a></li>
-            <li><a href="gestão_videos_exercicios.php">Gestão vídeos exercícios</a></li>
-            <li><a href="gestao_usuarios.php">Gestão de usuários</a></li>
+           <!-- <li><a href="gestao_foto_exercicio.php">Gestão fotos exercícios</a></li>
+            <li><a href="gestão_videos_exercicios.php">Gestão vídeos exercícios</a></li>-->
+            <li><a href="gestao_usuarios.php">Gestão de Usuários</a></li>
         </ul>
     </div>
 

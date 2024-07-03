@@ -80,7 +80,7 @@ class Usuario
             $sql = $this->con->conectar()->prepare("SELECT * FROM usuario WHERE id = :id");
             $sql->bindValue(':id', $id);
             $sql->execute();
-            if($sql->rouCount() > 0){
+            if($sql->rowCount() > 0){
                 return $sql->fetch();
             } else{
                 return array();
@@ -156,6 +156,35 @@ class Usuario
             return TRUE;
         }else{
             return FALSE;
+        }
+    }
+    public function buscaPermissaoSuper($arrayperm){
+        foreach($arrayperm as $item){
+            if($item == "super"){
+                return true;
+            }
+        }
+    }
+    public function buscaPermissaoAdd($arrayperm){
+        foreach($arrayperm as $item){
+            if($item == "add"){
+                return true;
+            }
+        }
+    }
+    public function buscaPermissaoDel($arrayperm){
+        foreach($arrayperm as $item){
+            if($item == "del"){
+                return true;
+            }
+        }
+
+    }
+    public function buscaPermissaoEdit($arrayperm){
+        foreach($arrayperm as $item){
+            if($item == "edit"){
+                return true;
+            }
         }
     }
 }

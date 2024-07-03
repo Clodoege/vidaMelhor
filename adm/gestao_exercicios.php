@@ -2,4 +2,4 @@
 include 'classes/exercicios.class.php';
 $exercicio = new Exercicios();
 ?>
-<h1>Gestão de exercicios Vida Melhor</h1>
+<h1>Gestão de Exercicios Vida Melhor</h1>

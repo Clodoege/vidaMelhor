@@ -2,7 +2,7 @@
 include 'classes/usuario.class.php';
 $usuario = new Usuario();
 ?>
-<h1>Gestao de usuario Vida Melhor</h1>
+<h1>Gestao de Usuario Vida Melhor</h1>
 
 
 <hr>
@@ -32,7 +32,7 @@ $usuario = new Usuario();
                
                 <td>
                     <a href="editarUsuario.php?id=<?php echo $item['id']; ?>">EDITAR</a>
-                    <a href="excluir.php?id=<?php echo $item['id']; ?>" onclick="return confirm('Tem certeza que quer excluir este cliente?')">| EXCLUIR</a>
+                    <a href="excluirUsuario.php?id=<?php echo $item['id']; ?>" onclick="return confirm('Tem certeza que quer excluir este usuário?')">| EXCLUIR</a>
                 </td>
 
 

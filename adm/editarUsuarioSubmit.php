@@ -1,6 +1,6 @@
 <?php
 include 'classes/usuario.class.php';
-$cliente = new Usuario();
+$usuario = new Usuario();
 
 if (!empty($_POST['id'])) {
     $nome = $_POST['nome'];
