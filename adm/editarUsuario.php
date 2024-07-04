@@ -17,11 +17,15 @@ if(!empty($_GET['id'])){
     header("Location: gestao_usuarios.php");
     exit;
 }
+/*if (!isset($_SESSION['logado'])) {
+    header("Location: gestao_usuarios.php");
+    exit;
+}*/
 ?>
 
 <h1> EDITAR USUARIO</h1>
 <form method="POST" action="editarUsuarioSubmit.php">
-    <input type="hidden" name="id" value="<?php echo $info['id'] ?>">
+    <input type="hidden" name="id" value="<?php echo $info['id'] ?>"/>
     Nome: <br>
     <input type="text" name="nome" value="<?php echo $info['nome'] ?>" /> <br><br>
    
@@ -31,54 +35,44 @@ if(!empty($_GET['id'])){
     Senha:<br>
     <input type="text" name="senha" value="<?php echo $info['senha'] ?>" /><br><br>
    
-    Permissoes:<br>
-    <label for="add">
-        <?php if ($usuario->buscaPermissaoAdd($arrayperm)) : ?>
-            <input type="checkbox" id="add" name="permissoes[]" value="add" checked> Adicionar
-        <?php endif; ?>
-    </label>
     
-    <label for="add">
+    <label for= permissoes>Permissões:</label><br>
+        <?php if ($usuario->buscaPermissaoAdd($arrayperm)) : ?>
+            <input type="checkbox" id="add" name="permissoes[]" value="add" checked> 
+            <label for= "add">ADICIONAR</label>
+        <?php endif; ?>
         <?php if (empty($usuario->buscaPermissaoAdd($arrayperm))) : ?>
-            <input type="checkbox" id="add" name="permissoes[]" value="add"> Adicionar
+            <input type="checkbox" id="add" name="permissoes[]" value="add"> 
+            <label for= "add">ADICIONAR</label>
         <?php endif; ?>
-    </label>
    
-    <label for="edit">
         <?php if ($usuario->buscaPermissaoEdit($arrayperm)) : ?>
-            <input  id="edit" type="checkbox" name="permissoes[]" value="edit" checked> Editar
+            <input type="checkbox" id="edit" name="permissoes[]" value="edit" checked> 
+            <label for= "edit">EDITAR</label>
         <?php endif; ?>
-    </label>
-   
-    <label for="edit">
         <?php if (empty($usuario->buscaPermissaoEdit($arrayperm))) : ?>
-            <input  id="edit" type="checkbox" name="permissoes[]" value="edit"> Editar
+            <input type="checkbox" id="edit" name="permissoes[]" value="edit"> 
+            <label for= "edit">EDITAR</label>
         <?php endif; ?>
-    </label>
 
-    <label for="del">
         <?php if ($usuario->buscaPermissaoDel($arrayperm)) : ?>
-            <input  id="del" type="checkbox" name="permissoes[]" value="del" checked> Deletar
+            <input type="checkbox" id="del" name="permissoes[]" value="del" checked> 
+            <label for= "del">EXCLUIR</label>
         <?php endif; ?>
-    </label>
-   
-    <label for="del">
         <?php if (empty($usuario->buscaPermissaoDel($arrayperm))) : ?>
-            <input  id="del" type="checkbox" name="permissoes[]" value="del"> Deletar
+            <input type="checkbox" id="del" name="permissoes[]" value="del"> 
+            <label for= "del">EXCLUIR</label>
         <?php endif; ?>
-    </label>
-   
-    <label for="super">
+
         <?php if ($usuario->buscaPermissaoSuper($arrayperm)) : ?>
-            <input  id="super" type="checkbox" name="permissoes[]" value="super" checked> Super
+            <input type="checkbox" id="super" name="permissoes[]" value="super" checked> 
+            <label for= "super">SUPER</label>
         <?php endif; ?>
-    </label>
-   
-    <label for="super">
         <?php if (empty($usuario->buscaPermissaoSuper($arrayperm))) : ?>
-            <input  id="super" type="checkbox" name="permissoes[]" value="super"> Super
+            <input type="checkbox" id="super" name="permissoes[]" value="super"> 
+            <label for= "super">SUPER</label>
         <?php endif; ?>
-    </label><br><br>
+    
 
     <input type="submit" name="btCadastrar" value="SALVAR" />
 

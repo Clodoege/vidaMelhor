@@ -89,17 +89,19 @@ class Usuario
             echo "ERRO: ". $ex->getMessage();
         }
     }
-    public function editar($nome, $email, $permissoes, $id)
+    public function editar($id, $nome, $email, $permissoes)
     {
-        $emailExistente = $this->existeEmail(($email));
+        $emailExistente = $this->existeEmail($email);
         if(count($emailExistente) > 0 && $emailExistente['id'] != $id){
             return FALSE;
         }else {
             try{
                 $sql = $this->con->conectar()->prepare("UPDATE usuario SET nome = :nome, email = :email, permissoes = :permissoes WHERE id = :id");
+                $sql->bindValue(':id', $id);
                 $sql->bindValue(':nome', $nome);
                 $sql->bindValue(':email', $email);
                 $sql->bindValue(':permissoes', $permissoes);
+               
                 $sql->execute();
 
                 return TRUE;
